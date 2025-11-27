@@ -73,7 +73,7 @@ public class Main {
 
         System.out.println("Tamanho da lista de filmes: " +coletaneaDeFilmes.size());
         System.out.println("Nome do Filme: " +coletaneaDeFilmes.get(0).getNomeDoTitulo());
-
-        
+        System.out.println(coletaneaDeFilmes);
+        System.out.println(coletaneaDeFilmes.get(0).toString());
     }
 }
