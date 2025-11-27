@@ -4,6 +4,8 @@ import br.com.ProjetoAlura.OrbitStream.modelos.Series;
 import br.com.ProjetoAlura.OrbitStream.modelos.calculos.CalculadoraDeTempo;
 import br.com.ProjetoAlura.OrbitStream.modelos.calculos.Recomendacoes;
 
+import java.util.ArrayList;
+
 public class Main {
     static void main(String[] args) {
         Filmes filme_cod001 = new Filmes();
@@ -57,5 +59,21 @@ public class Main {
 
         filtroFilme_001.filtra(novoEp_Piloto_00);
 
+        Filmes filme_cod003 = new Filmes();
+        filme_cod003.setNomeDoTitulo("Tróia");
+        filme_cod003.setAnoDeLancamento(2004);
+        filme_cod003.setIncluidoNoPlano(true);
+        filme_cod003.setDuracaoEmMinutos(170);
+        filme_cod003.avalia(10);
+
+        ArrayList<Filmes> coletaneaDeFilmes = new ArrayList<>();
+        coletaneaDeFilmes.add(filme_cod001);
+        coletaneaDeFilmes.add(filme_cod002);
+        coletaneaDeFilmes.add(filme_cod003);
+
+        System.out.println("Tamanho da lista de filmes: " +coletaneaDeFilmes.size());
+        System.out.println("Nome do Filme: " +coletaneaDeFilmes.get(0).getNomeDoTitulo());
+
+        
     }
 }
