@@ -1,5 +1,5 @@
 package br.com.ProjetoAlura.OrbitStream.modelos.calculos;
-import br.com.ProjetoAlura.OrbitStream.modelos.Titulos;
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.Titulos;
 
 public class CalculadoraDeTempo {
     private int tempoTotal;

@@ -1,6 +1,6 @@
-import br.com.ProjetoAlura.OrbitStream.modelos.Episodios;
-import br.com.ProjetoAlura.OrbitStream.modelos.Filmes;
-import br.com.ProjetoAlura.OrbitStream.modelos.Series;
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.Episodios;
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.Filmes;
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.Series;
 import br.com.ProjetoAlura.OrbitStream.modelos.calculos.CalculadoraDeTempo;
 import br.com.ProjetoAlura.OrbitStream.modelos.calculos.Recomendacoes;
 

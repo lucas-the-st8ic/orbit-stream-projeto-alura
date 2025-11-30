@@ -1,4 +1,4 @@
-package br.com.ProjetoAlura.OrbitStream.modelos;
+package br.com.ProjetoAlura.OrbitStream.modelos.classes;
 
 public class Titulos {
 

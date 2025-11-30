@@ -1,4 +1,4 @@
-package br.com.ProjetoAlura.OrbitStream.modelos;
+package br.com.ProjetoAlura.OrbitStream.modelos.classes;
 
 import br.com.ProjetoAlura.OrbitStream.modelos.calculos.Classificacoes;
 
