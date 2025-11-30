@@ -25,8 +25,10 @@ public class ListaDeTitulos {
 
         for (Titulos titulo : coletaneaDeTitulos) {
             System.out.println(titulo.getNomeDoTitulo());
-            Filmes filme = (Filmes) titulo;
-            System.out.println("Classificação " +filme.getclassificacao());
+            if(titulo instanceof Filmes filme && filme.getclassificacao() > 2){
+                System.out.println("Classificação " +filme.getclassificacao());
+            }
+
         }
     }
 }
