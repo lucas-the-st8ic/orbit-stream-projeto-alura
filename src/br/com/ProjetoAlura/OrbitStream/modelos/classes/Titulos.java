@@ -70,5 +70,5 @@ public class Titulos implements Comparable<Titulos> {
         return this.getNomeDoTitulo().compareTo(outroTitulo.getNomeDoTitulo());
     }
 
-    
+
 }
