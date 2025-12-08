@@ -12,11 +12,12 @@ public class MainBuscaDeTitulos {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Digite o nome de um titulo para buscar no catálogo");
+        System.out.println("Digite o nome de um titulo para buscar no catálogo:");
         var buscaDeTitulos = input.nextLine();
+        buscaDeTitulos = buscaDeTitulos.replace(" ","+");
+
 
         String endereco = "https://www.omdbapi.com/?t=" + buscaDeTitulos + "&apikey=32905f12";
-
 
         HttpClient client = HttpClient.newHttpClient();
 
@@ -27,8 +28,6 @@ public class MainBuscaDeTitulos {
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-
-        
         System.out.println(response.body());
 
     }
