@@ -1,5 +1,11 @@
 package br.com.ProjetoAlura.OrbitStream.modelos.Main;
 
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.TituloOmdb;
+import br.com.ProjetoAlura.OrbitStream.modelos.classes.Titulos;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,6 +20,7 @@ public class MainBuscaDeTitulos {
 
         System.out.println("Digite o nome de um titulo para buscar no catálogo");
         var buscaDeTitulos = input.nextLine();
+        buscaDeTitulos = buscaDeTitulos.replace(" ", "+");
 
         String endereco = "https://www.omdbapi.com/?t=" + buscaDeTitulos + "&apikey=32905f12";
 
@@ -28,7 +35,15 @@ public class MainBuscaDeTitulos {
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
         
-        System.out.println(response.body());
 
+        String json = response.body();
+        System.out.println(json);
+
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+        
+        TituloOmdb meutituloOmdb = gson.fromJson(json, TituloOmdb.class);
+
+        Titulos meutitulo = new Titulos(meutituloOmdb);
+        System.out.println(meutitulo);
     }
 }
