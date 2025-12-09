@@ -1,8 +1,11 @@
 package br.com.ProjetoAlura.OrbitStream.modelos.classes;
 
-public class Titulos implements Comparable<Titulos> {
+import com.google.gson.annotations.SerializedName;
 
+public class Titulos implements Comparable<Titulos> {
+    @SerializedName("Title")
     private String nomeDoTitulo;
+    @SerializedName("Year")
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private int duracaoEmMinutos;
@@ -12,6 +15,12 @@ public class Titulos implements Comparable<Titulos> {
     public Titulos(String nomeDoTitulo, int anoDeLancamento) {
         this.nomeDoTitulo = nomeDoTitulo;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulos(TituloOmdb meutituloOmdb) {
+        this.nomeDoTitulo = meutituloOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(meutituloOmdb.year());
+        this.duracaoEmMinutos = Integer.valueOf(meutituloOmdb.runtime().substring(0, 3));
     }
 
     public String getNomeDoTitulo() {
@@ -70,5 +79,8 @@ public class Titulos implements Comparable<Titulos> {
         return this.getNomeDoTitulo().compareTo(outroTitulo.getNomeDoTitulo());
     }
 
-
+    @Override
+    public String toString() {
+        return "Título: " +nomeDoTitulo+"\nAno de Lançamento: " +anoDeLancamento+ "\nDuração em Minutos: " +duracaoEmMinutos+ "\n";
+    }
 }
