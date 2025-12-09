@@ -40,7 +40,7 @@ public class MainBuscaDeTitulos {
         System.out.println(json);
 
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-        
+
         TituloOmdb meutituloOmdb = gson.fromJson(json, TituloOmdb.class);
 
         Titulos meutitulo = new Titulos(meutituloOmdb);
