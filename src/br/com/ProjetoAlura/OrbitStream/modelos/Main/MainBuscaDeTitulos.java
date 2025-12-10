@@ -13,55 +13,76 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainBuscaDeTitulos {
     static void main(String[] args) throws IOException, InterruptedException {
 
         Scanner input = new Scanner(System.in);
-
-        System.out.println("Digite o nome de um titulo para buscar no catálogo: ");
-        var buscaDeTitulos = input.nextLine();
-        buscaDeTitulos = buscaDeTitulos.replace(" ", "+");
-
-        String endereco = "https://www.omdbapi.com/?t=" + buscaDeTitulos + "&apikey=32905f12";
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(endereco))
-                    .build();
-
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
+        String buscaDeTitulos = " ";
+        List<Titulos> coletaneaDeTitulos = new ArrayList<>();
 
 
-            String json = response.body();
-            System.out.println(json);
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting()
+                .create();
 
-            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                    .create();
 
-            TituloOmdb meutituloOmdb = gson.fromJson(json, TituloOmdb.class);
-            //try {
-            Titulos meutitulo = new Titulos(meutituloOmdb);
-            System.out.println(meutitulo);
+        while (!buscaDeTitulos.equalsIgnoreCase("Sair")) {
 
-            FileWriter textoDescritivo = new FileWriter("filmes.txt");
-            textoDescritivo.write(meutitulo.toString());
-            textoDescritivo.close();
+            System.out.println("Digite o nome de um titulo para buscar no catálogo: ");
+            buscaDeTitulos = input.nextLine();
 
-        } catch (NumberFormatException e) {
-            System.out.println("Erro!!");
-            System.out.println(e.getMessage());
-        } catch (ErroDeConversaoDeAnoException e) {
-            System.out.println(e.getMessage());
+            if (buscaDeTitulos.equalsIgnoreCase("Sair")){
+                break;
+            }
+
+            buscaDeTitulos = buscaDeTitulos.replace(" ", "+");
+
+            String endereco = "https://www.omdbapi.com/?t=" + buscaDeTitulos + "&apikey=32905f12";
+
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(endereco))
+                        .build();
+
+                HttpResponse<String> response = client
+                        .send(request, HttpResponse.BodyHandlers.ofString());
+
+
+                String json = response.body();
+                System.out.println(json);
+
+
+
+                TituloOmdb meutituloOmdb = gson.fromJson(json, TituloOmdb.class);
+                //try {
+                Titulos tituloRetorno = new Titulos(meutituloOmdb);
+                System.out.println(tituloRetorno);
+
+                coletaneaDeTitulos.add(tituloRetorno);
+
+            } catch (NumberFormatException e) {
+                System.out.println("Erro!!");
+                System.out.println(e.getMessage());
+            } catch (ErroDeConversaoDeAnoException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
 
-        System.out.println("Programa finalizado.");
+        System.out.println(coletaneaDeTitulos);
 
+        FileWriter arquivoBuscaDeTitulos = new FileWriter("filmes.json");
+        arquivoBuscaDeTitulos.write(gson.toJson(coletaneaDeTitulos));
+        arquivoBuscaDeTitulos.close();
+
+        System.out.println("Programa finalizado.");
 
 
     }
