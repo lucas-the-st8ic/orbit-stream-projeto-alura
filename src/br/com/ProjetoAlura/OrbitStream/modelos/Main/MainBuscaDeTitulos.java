@@ -49,7 +49,9 @@ public class MainBuscaDeTitulos {
             Titulos meutitulo = new Titulos(meutituloOmdb);
             System.out.println(meutitulo);
 
-            FileWriter
+            FileWriter textoDescritivo = new FileWriter("filmes.txt");
+            textoDescritivo.write(meutitulo.toString());
+            textoDescritivo.close();
 
         } catch (NumberFormatException e) {
             System.out.println("Erro!!");
