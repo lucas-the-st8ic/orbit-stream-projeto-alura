@@ -7,6 +7,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -45,9 +46,11 @@ public class MainBuscaDeTitulos {
 
             TituloOmdb meutituloOmdb = gson.fromJson(json, TituloOmdb.class);
             //try {
-
             Titulos meutitulo = new Titulos(meutituloOmdb);
             System.out.println(meutitulo);
+
+            FileWriter
+
         } catch (NumberFormatException e) {
             System.out.println("Erro!!");
             System.out.println(e.getMessage());
